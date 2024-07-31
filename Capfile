@@ -7,12 +7,7 @@ require "capistrano/rbenv"
 require "capistrano/bundler"
 require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
-require "capistrano/puma"
-require 'capistrano/puma/workers'
-require 'capistrano/puma/jungle'
-require 'capistrano/puma/nginx'
-require 'capistrano/puma/monit'
-require 'capistrano/puma/systemd'
+require "capistrano3/puma"
 
 # Load the SCM plugin appropriate to your project:
 #

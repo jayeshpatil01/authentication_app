@@ -36,3 +36,5 @@ yarn-debug.log*
 .yarn-integrity
 
 .env
+rails_app_keys.pem
+ubuntu@13.126.38.196

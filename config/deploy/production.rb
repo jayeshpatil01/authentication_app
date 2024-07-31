@@ -60,10 +60,10 @@
 #     # password: "please use keys"
 #   }
 
-server 'ec2-13-126-38-196.ap-south-1.compute.amazonaws.com', user: 'ubuntu', roles: %w{app db web}
+server '13.126.38.196', user: 'ubuntu', roles: %w{app db web}
 
 set :ssh_options, {
-  keys: %(/home/ubuntu/rails_app_keys.pem),
+  keys: %(/Users/jay/Code Practice/authentication_app/rails_app_keys.pem),
   forward_agent: true,
   auth_methods: %w(publickey)
 }

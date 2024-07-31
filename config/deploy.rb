@@ -1,15 +1,22 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.19.1"
 
+set :ssh_options, {
+  keys: %w(/Users/jay/Code Practice/authentication_app/rails_app_keys.pem),
+  forward_agent: true,
+  auth_methods: %w(publickey)
+}
+
 set :application, "authentication_app"
 set :repo_url, "https://github.com/jayeshpatil01/authentication_app.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, "main"
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
-set :deploy_to, "/home/deploy/#{fetch :application}"
+set :deploy_to, "/home/ubuntu/#{fetch :application}"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh

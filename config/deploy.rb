@@ -107,7 +107,7 @@ namespace :deploy do
     end
   end
 
-  before :starting, :check_revision
+  # before :starting, :check_revision
   before :finishing, :compile_assets
   before :finishing, :cleanup
 end

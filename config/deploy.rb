@@ -8,7 +8,7 @@ set :repo_url, "git@github.com:jayeshpatil01/authentication_app.git"
 
 set :rbenv_ruby, '3.0.7'
 
-set :branch, "develop"
+set :branch, "main"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -84,16 +84,16 @@ namespace :deploy do
     on roles(:app) do
 
       # Update this to your branch name: master, main, etc. Here it's main
-      unless `git rev-parse HEAD` == 'git rev-parse github/develop'
-        puts "WARNING: HEAD is not the same as github/develop"
+      unless `git rev-parse HEAD` == 'git rev-parse github/main'
+        puts "WARNING: HEAD is not the same as github/main"
         puts "Run `git push` to sync changes."
         exit
       end
     end
   end
 
-  desc 'Inital Deploy'
-  task :inital do
+  desc 'Initial Deploy'
+  task :initial do
     on roles(:app) do
       before 'deploy:restart', 'puma:start'
       invoke 'deploy'

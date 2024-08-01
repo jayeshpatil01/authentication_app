@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.19.1"
 
-server '172.31.36.152', port: 22, roles: [:web :app, :db], primary: true
+server '172.31.36.152', port: 22, roles: [:web, :app, :db], primary: true
 
 set :application, "authentication_app"
 set :repo_url, "git@github.com:jayeshpatil01/authentication_app.git"

@@ -21,7 +21,7 @@ install_plugin Capistrano::SCM::Git
 
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
-install_plugin Capistrano::Pume::Deamon
+install_plugin Capistrano::Puma::Deamon
 
 # Include tasks from other gems included in your Gemfile
 #

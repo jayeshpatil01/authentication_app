@@ -37,15 +37,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # before forking the application. This takes advantage of Copy On Write
 # process behavior so workers use less memory.
 #
-preload_app!
-
-# Set up socket location and directories
-directory '/home/ubuntu/authentication_app/current'
-rackup "/home/ubuntu/authentication_app/current/config.ru"
-bind "unix:///home/ubuntu/authentication_app/shared/tmp/sockets/authentication_app-puma.sock"
-pidfile "/home/ubuntu/authentication_app/shared/tmp/pids/puma.pid"
-state_path "/home/ubuntu/authentication_app/shared/tmp/pids/puma.state"
-stdout_redirect "/home/ubuntu/authentication_app/current/log/puma.stdout.log", "/home/ubuntu/authentication_app/current/log/puma.stderr.log", true
+# preload_app!
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart

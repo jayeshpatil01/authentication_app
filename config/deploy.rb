@@ -113,6 +113,20 @@ namespace :deploy do
   # before :starting, :check_revision
   before :finishing, :compile_assets
   before :finishing, :cleanup
+
+  desc 'Set correct permissions'
+  task :set_permissions do
+    on roles(:app) do
+      execute :sudo, :chown, '-R', 'ubuntu:www-data', "#{release_path}/public"
+      execute :sudo, :chmod, '-R', '755', "#{release_path}/public"
+      execute :sudo, :chown, '-R', 'ubuntu:www-data', "#{shared_path}/tmp/sockets"
+      execute :sudo, :chmod, '-R', '755', "#{shared_path}/tmp/sockets"
+      execute :sudo, :chown, '-R', 'ubuntu:www-data', "#{release_path}/log"
+      execute :sudo, :chmod, '-R', '755', "#{release_path}/log"
+    end
+  end
+
+  after :publishing, :set_permissions
 end
 
 namespace :dotenv do

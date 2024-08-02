@@ -34,7 +34,7 @@ set :branch, "main"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH"}
+set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH", NODE_OPTIONS: "--openssl-legacy-provider" }
 
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
@@ -82,32 +82,6 @@ namespace :puma do
 end
 
 namespace :deploy do
-  desc "Run yarn install"
-  task :yarn_install do
-    on roles(:app) do
-      within release_path do
-        with NODE_OPTIONS: "--openssl-legacy-provider" do
-          execute :yarn, 'install'
-        end
-      end
-    end
-  end
-
-  before "deploy:assets:precompile", "deploy:yarn_install"
-
-  desc "Precompile assets"
-  task :precompile_assets do
-    on roles(:app) do
-      within release_path do
-        with NODE_OPTIONS: "--openssl-legacy-provider" do
-          execute :bundle, 'exec rake assets:precompile'
-        end
-      end
-    end
-  end
-
-  before 'deploy:updated', 'deploy:precompile_assets'
-
   desc "Make sure local git is in sync with remote"
   task :check_revision do
     on roles(:app) do

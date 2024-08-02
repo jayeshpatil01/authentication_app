@@ -24,6 +24,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'rack-cors', :require => 'rack/cors'
 
+gem "dotenv-rails", "~> 2.4"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -33,7 +35,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'dotenv'
 
   gem 'rspec-rails'
   gem 'factory_bot_rails'

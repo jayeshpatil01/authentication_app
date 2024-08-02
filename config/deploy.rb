@@ -64,6 +64,9 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true   # change to false when not using active record
 
+# Temporarily remove the --quiet flag from the bundler command
+set :bundle_flags, '--jobs 4'
+
 append :rbenv_map_bins, 'puma', 'pumactl'
 
 namespace :puma do

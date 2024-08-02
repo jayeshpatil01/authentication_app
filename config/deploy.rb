@@ -114,3 +114,14 @@ namespace :deploy do
   before :finishing, :compile_assets
   before :finishing, :cleanup
 end
+
+namespace :dotenv do
+  desc "Set up .env symlink"
+  task :setup do
+    on roles(:app) do
+      execute "ln -nfs #{shared_path}/.env #{release_path}/.env"
+    end
+  end
+end
+
+after 'deploy:symlink:shared', 'dotenv:setup'

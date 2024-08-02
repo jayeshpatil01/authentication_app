@@ -82,6 +82,32 @@ namespace :puma do
 end
 
 namespace :deploy do
+  desc "Run yarn install"
+  task :yarn_install do
+    on roles(:app) do
+      within release_path do
+        with NODE_OPTIONS: "--openssl-legacy-provider" do
+          execute :yarn, 'install'
+        end
+      end
+    end
+  end
+
+  before "deploy:assets:precompile", "deploy:yarn_install"
+
+  desc "Precompile assets"
+  task :precompile_assets do
+    on roles(:app) do
+      within release_path do
+        with NODE_OPTIONS: "--openssl-legacy-provider" do
+          execute :bundle, 'exec rake assets:precompile'
+        end
+      end
+    end
+  end
+
+  before 'deploy:updated', 'deploy:precompile_assets'
+
   desc "Make sure local git is in sync with remote"
   task :check_revision do
     on roles(:app) do
